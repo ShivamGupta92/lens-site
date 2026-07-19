@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lens — AI chat side panel for any web page</title>
+<meta name="description" content="Lens adds an AI chat side panel to Chrome. Ask questions about the page you're reading. Bring your own API key — no server, no telemetry.">
+<style>
+  :root {
+    --paper: #f4f1ea;
+    --paper-deep: #ece7db;
+    --ink: #2b2723;
+    --ink-soft: #5c554c;
+    --rust: #b5522f;
+    --rust-deep: #8f3e22;
+    --rule: #d8d0c0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    line-height: 1.6; font-size: 18px;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 72px 24px 96px; }
+  .brand {
+    font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--rust); margin: 0 0 20px;
+  }
+  h1 { font-size: clamp(36px, 7vw, 54px); line-height: 1.05; margin: 0; font-weight: 600; letter-spacing: -0.015em; }
+  h1 .accent { color: var(--rust); }
+  .tagline { font-size: 22px; line-height: 1.45; margin: 26px 0 0; color: var(--ink-soft); }
+  .cta {
+    display: inline-block; margin-top: 28px;
+    font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 14px; letter-spacing: 0.04em;
+    background: var(--paper-deep); color: var(--ink-soft);
+    padding: 12px 22px; border: 1px solid var(--rule); border-radius: 4px;
+  }
+  .cta span { color: var(--rust); font-weight: 600; }
+  h2 {
+    font-size: 14px; font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--rust-deep);
+    margin: 52px 0 4px; padding-top: 22px; border-top: 1px solid var(--rule);
+  }
+  h3 { font-size: 18px; margin: 26px 0 4px; font-weight: 600; }
+  p { margin: 14px 0; }
+  strong { color: var(--ink); font-weight: 600; }
+  a { color: var(--rust-deep); text-underline-offset: 3px; }
+  code {
+    font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 0.86em; background: var(--paper-deep); padding: 2px 6px; border-radius: 3px;
+  }
+  ul { padding-left: 22px; margin: 14px 0; }
+  li { margin: 8px 0; }
+  ol { padding-left: 22px; }
+  ol li { margin: 10px 0; }
+  .features { list-style: none; padding: 0; margin: 20px 0; }
+  .features li {
+    padding: 14px 0; border-bottom: 1px solid var(--rule);
+    display: flex; gap: 16px; align-items: baseline;
+  }
+  .features li:last-child { border-bottom: none; }
+  .fnum {
+    font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 13px; color: var(--rust); flex: 0 0 auto; width: 26px;
+  }
+  .ftext strong { display: block; margin-bottom: 2px; }
+  .ftext span { color: var(--ink-soft); font-size: 16px; }
+  .callout {
+    background: var(--paper-deep); border-left: 3px solid var(--rust);
+    padding: 18px 22px; margin: 28px 0; font-size: 17px;
+  }
+  .callout p { margin: 8px 0; }
+  footer {
+    margin-top: 64px; padding-top: 22px; border-top: 2px solid var(--ink);
+    font-size: 14px; color: var(--ink-soft);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer a { color: var(--ink-soft); }
+  a:hover { color: var(--rust); }
+  a:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="brand">Lens</p>
+    <h1>AI for the page <span class="accent">you're on.</span></h1>
+    <p class="tagline">An AI chat side panel for any web page. Bring your own API key.</p>
+    <p class="cta">Chrome Web Store — <span>coming soon</span></p>
+
+    <h2>What it does</h2>
+    <p>Lens adds a chat side panel to Chrome. Open it on any page and ask an AI questions about what you're reading, get a summary, or work through ideas — with the current page's content already in context. It uses your choice of provider: Google (Gemini), OpenAI, or Anthropic. You supply your own API key, and Lens sends your questions directly to that provider using your key.</p>
+
+    <h2>Why it exists</h2>
+    <p>Most AI browser extensions route your data through an intermediary service — even ones that say "bring your own key" often still see your prompts, page content, or usage. Lens doesn't. Your data goes from your browser directly to the AI provider you chose. There's no Lens server, no Lens account, no telemetry. It's built for people who want AI help while browsing but prefer the data flow simple and inspectable.</p>
+
+    <h2>How it works</h2>
+    <h3>Content extraction</h3>
+    <p>When you open Lens on a page, it extracts the readable content — the article or document text — and makes it available to the AI alongside your questions. Extraction happens on your device, only when you invoke Lens.</p>
+    <h3>Bring your own key</h3>
+    <p>You add an API key from your chosen provider in Lens's settings. Lens stores the key locally in your browser using Chrome's storage APIs, and uses it to call the provider's API directly. You pay the provider for usage; you don't pay Lens. Getting a key takes a few minutes:</p>
+    <ul>
+      <li><strong>Google Gemini</strong> — free tier available. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a></li>
+      <li><strong>OpenAI</strong> — paid, usage-based. <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com/api-keys</a></li>
+      <li><strong>Anthropic</strong> — paid, usage-based. <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com/settings/keys</a></li>
+    </ul>
+
+    <h2>Features</h2>
+    <ul class="features">
+      <li><span class="fnum">01</span><span class="ftext"><strong>Side panel chat on any page</strong><span>Invoke Lens wherever you're reading, without leaving the tab.</span></span></li>
+      <li><span class="fnum">02</span><span class="ftext"><strong>Three AI providers</strong><span>Gemini, OpenAI, or Anthropic — your key, your choice, shown in the composer.</span></span></li>
+      <li><span class="fnum">03</span><span class="ftext"><strong>Selected-text mode</strong><span>Highlight text on a page to ask about just that passage.</span></span></li>
+      <li><span class="fnum">04</span><span class="ftext"><strong>Streaming, stop, regenerate</strong><span>Watch replies stream in, stop mid-generation, or regenerate an answer.</span></span></li>
+      <li><span class="fnum">05</span><span class="ftext"><strong>Export to file</strong><span>Save a conversation out when it's worth keeping.</span></span></li>
+      <li><span class="fnum">06</span><span class="ftext"><strong>Keyboard shortcut</strong><span>Toggle the panel with <code>Ctrl+Shift+L</code>.</span></span></li>
+    </ul>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Install Lens from the Chrome Web Store (coming soon).</li>
+      <li>Get an API key from Google, OpenAI, or Anthropic (links above).</li>
+      <li>Right-click the Lens icon in Chrome's toolbar → Options, and add your key.</li>
+      <li>Open a web page you want to chat about.</li>
+      <li>Click the Lens icon or press <code>Ctrl+Shift+L</code> to open the side panel.</li>
+      <li>Ask a question, or use Summarize for a quick starting point.</li>
+    </ol>
+
+    <h2>What Lens doesn't do</h2>
+    <p>Being clear about what Lens isn't matters as much as what it is:</p>
+    <ul>
+      <li>Lens is not a hosted service. There's no "Lens account."</li>
+      <li>Lens doesn't use its own AI models — it uses the model you configure at the provider you choose.</li>
+      <li>Lens doesn't collect analytics, telemetry, or crash reports.</li>
+      <li>Lens doesn't sync across devices. Everything is per browser profile.</li>
+      <li>Lens doesn't modify the pages you visit. It reads them; it doesn't inject UI or change content.</li>
+      <li>Lens doesn't save conversations to a database. History lives per tab in the browser session.</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Privacy in one sentence:</strong> Lens is a client-side extension with no server, no telemetry, and no data collection — the data flow is from your browser directly to the AI provider whose key you configured.</p>
+      <p>Read the full <a href="./privacy.html">privacy policy</a>.</p>
+    </div>
+
+    <h2>Support</h2>
+    <p>Lens is a personal project built to a specific set of principles: client-side, no telemetry, transparent data flow. Questions, bug reports, and feature requests are welcome at <a href="mailto:shivamgupta5203@gmail.com">shivamgupta5203@gmail.com</a>. Lens is provided as-is; if those principles work for you, welcome.</p>
+
+    <footer>
+      <span>Lens v1.5.0 — AI for the page you're on</span>
+      <a href="./privacy.html">Privacy Policy</a>
+    </footer>
+  </div>
+</body>
+</html>

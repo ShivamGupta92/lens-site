@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Lens</title>
+<meta name="description" content="How Lens handles your data: local extraction, your own API key, no telemetry, no backend.">
+<style>
+  :root {
+    --paper: #f4f1ea;
+    --paper-deep: #ece7db;
+    --ink: #2b2723;
+    --ink-soft: #5c554c;
+    --rust: #b5522f;
+    --rust-deep: #8f3e22;
+    --rule: #d8d0c0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    line-height: 1.6;
+    font-size: 18px;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 72px 24px 96px; }
+  header { border-bottom: 2px solid var(--ink); padding-bottom: 20px; margin-bottom: 8px; }
+  .brand {
+    font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--rust); margin: 0 0 14px;
+  }
+  h1 { font-size: clamp(32px, 6vw, 44px); line-height: 1.08; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+  .updated {
+    font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; margin-top: 18px;
+  }
+  .lede { font-size: 21px; line-height: 1.5; color: var(--ink); margin: 36px 0 8px; }
+  h2 {
+    font-size: 14px; font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--rust-deep);
+    margin: 44px 0 4px; padding-top: 22px; border-top: 1px solid var(--rule);
+  }
+  p { margin: 14px 0; }
+  strong { color: var(--ink); font-weight: 600; }
+  a { color: var(--rust-deep); text-underline-offset: 3px; }
+  ul { margin: 14px 0; padding-left: 22px; }
+  li { margin: 8px 0; }
+  code {
+    font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 0.86em; background: var(--paper-deep); padding: 2px 6px; border-radius: 3px;
+  }
+  .callout {
+    background: var(--paper-deep); border-left: 3px solid var(--rust);
+    padding: 18px 22px; margin: 28px 0; font-size: 17px;
+  }
+  footer {
+    margin-top: 64px; padding-top: 22px; border-top: 2px solid var(--ink);
+    font-size: 14px; color: var(--ink-soft);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer a { color: var(--ink-soft); }
+  a:hover { color: var(--rust); }
+  a:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="brand">Lens</p>
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: 19 July 2026 · Version 1.5.0</p>
+    </header>
+
+    <p class="lede">Lens is a bring-your-own-key AI side panel. Your messages and the page content you work with go directly from your browser to the AI provider you chose — using your own key. There is no Lens server in between.</p>
+
+    <div class="callout">
+      <strong>The short version:</strong> Lens has no server, no account, no telemetry, and no analytics. Nothing you do in Lens is collected by us, because there is no "us" in the data path — only your browser and the AI provider you configured.
+    </div>
+
+    <h2>What data Lens accesses</h2>
+    <p>Lens accesses data only when you actively use it — when the side panel is open and you invoke it on a page:</p>
+    <ul>
+      <li><strong>Page content.</strong> When you open Lens on a web page, it reads that page's readable text (extracted from the DOM) so the AI can answer questions about it.</li>
+      <li><strong>Text selections.</strong> If you highlight text and use the selection feature, Lens reads just that selected text.</li>
+      <li><strong>Messages you type.</strong> The questions and instructions you enter in the Lens chat.</li>
+    </ul>
+    <p>Lens does not run in the background, does not read pages you haven't opened it on, and does not monitor your browsing.</p>
+
+    <h2>Where your data goes</h2>
+    <p>When you send a message, your text plus the relevant page content (title, URL, and extracted text) is transmitted directly from your browser to the AI provider you configured — Google (Gemini), OpenAI, or Anthropic — over an encrypted connection, authenticated with your own API key. Lens is not a server-side intermediary; the request goes straight to the provider.</p>
+    <p>What the provider does with that data is governed by <strong>their</strong> policy, not Lens's. Review whichever you use:</p>
+    <ul>
+      <li>Google (Gemini): <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+      <li>OpenAI: <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">openai.com/policies/privacy-policy</a></li>
+      <li>Anthropic: <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">anthropic.com/legal/privacy</a></li>
+    </ul>
+    <p>You are responsible for understanding your chosen provider's practices — including whether they retain data or use it for training — and configuring your account there accordingly.</p>
+
+    <h2>Where your data is stored</h2>
+    <p>Lens stores everything locally in your browser via Chrome's storage APIs:</p>
+    <ul>
+      <li><strong>Your API key</strong> is kept in <code>chrome.storage.local</code> and is used for one purpose only — authenticating your requests to your chosen provider. It never leaves your browser except in those direct requests, and is never sent to us or any third party.</li>
+      <li><strong>Your settings</strong> (selected provider, model, preferences) live in <code>chrome.storage.local</code>.</li>
+      <li><strong>Your conversation</strong> exists per tab in the current session and clears when you close or reload the tab, unless you explicitly export it.</li>
+    </ul>
+
+    <h2>What Lens does not do</h2>
+    <ul>
+      <li>No telemetry, analytics, or usage tracking.</li>
+      <li>No crash or error reporting to any server.</li>
+      <li>No accounts, sign-ups, or profiles.</li>
+      <li>No advertising, and no selling or sharing of your data.</li>
+      <li>No cross-site tracking.</li>
+      <li>No reading of pages when the side panel isn't open.</li>
+      <li>No modifying or injecting content into the pages you visit.</li>
+      <li>No server, database, or infrastructure that could store your data — none exists.</li>
+    </ul>
+
+    <h2>Permissions Lens requests</h2>
+    <ul>
+      <li><code>activeTab</code> and host access to <code>&lt;all_urls&gt;</code> — to read page content when you open the side panel on a tab, only when you invoke Lens there.</li>
+      <li><code>storage</code> — to keep your API key and settings locally in your browser.</li>
+      <li><code>sidePanel</code> — to show the Lens chat in Chrome's side panel.</li>
+      <li><code>scripting</code> — to run Lens's content-extraction script on the page when you open the panel.</li>
+      <li><code>contextMenus</code> — to add the right-click entry for asking Lens about selected text.</li>
+    </ul>
+
+    <h2>Children's privacy</h2>
+    <p>Lens is a general-purpose tool, not directed at children under 13, and does not knowingly collect personal information from anyone. If you are a minor, review your AI provider's policies before using Lens with your key.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If Lens's data behavior ever changes — for example, if it were to add telemetry or server-side processing — this policy will be updated before that change ships in a release. The date at the top reflects the latest revision.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy or Lens's privacy practices can be sent to <a href="mailto:shivamgupta5203@gmail.com">shivamgupta5203@gmail.com</a>.</p>
+
+    <footer>
+      <span>Lens — AI for the page you're on</span>
+      <a href="./about.html">About Lens</a>
+    </footer>
+  </div>
+</body>
+</html>
