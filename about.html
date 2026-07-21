@@ -35,10 +35,18 @@
     display: inline-block; margin-top: 28px;
     font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
     font-size: 14px; letter-spacing: 0.04em;
-    background: var(--paper-deep); color: var(--ink-soft);
-    padding: 12px 22px; border: 1px solid var(--rule); border-radius: 4px;
+    background: var(--rust); color: #fff;
+    padding: 13px 26px; border: 1px solid var(--rust); border-radius: 4px;
+    text-decoration: none; font-weight: 600;
+    transition: background 0.15s ease, border-color 0.15s ease;
   }
-  .cta span { color: var(--rust); font-weight: 600; }
+  .cta:hover { background: var(--rust-deep); border-color: var(--rust-deep); color: #fff; }
+  .cta:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .cta-note {
+    font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 12px; color: var(--ink-soft); letter-spacing: 0.03em;
+    margin: 12px 0 0;
+  }
   h2 {
     font-size: 14px; font-family: "SF Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
     text-transform: uppercase; letter-spacing: 0.12em; color: var(--rust-deep);
@@ -88,7 +96,8 @@
     <p class="brand">Lens</p>
     <h1>AI for the page <span class="accent">you're on.</span></h1>
     <p class="tagline">An AI chat side panel for any web page. Bring your own API key.</p>
-    <p class="cta">Chrome Web Store — <span>coming soon</span></p>
+    <a class="cta" href="https://chromewebstore.google.com/detail/fpjanoicppfbmikfhoefffdoooiddopa" target="_blank" rel="noopener">Get Lens on the Chrome Web Store</a>
+    <p class="cta-note">Rolling out now — if the store page isn't live yet, it's clearing review.</p>
 
     <h2>What it does</h2>
     <p>Lens adds a chat side panel to Chrome. Open it on any page and ask an AI questions about what you're reading, get a summary, or work through ideas — with the current page's content already in context. It uses your choice of provider: Google (Gemini), OpenAI, or Anthropic. You supply your own API key, and Lens sends your questions directly to that provider using your key.</p>
@@ -119,7 +128,7 @@
 
     <h2>Getting started</h2>
     <ol>
-      <li>Install Lens from the Chrome Web Store (coming soon).</li>
+      <li>Install Lens from the Chrome Web Store.</li>
       <li>Get an API key from Google, OpenAI, or Anthropic (links above).</li>
       <li>Right-click the Lens icon in Chrome's toolbar → Options, and add your key.</li>
       <li>Open a web page you want to chat about.</li>
